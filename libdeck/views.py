@@ -1,5 +1,5 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import LibrarySpace, Book
 
@@ -11,10 +11,15 @@ def index(request):
     # return HttpResponse("Welcome to library crossroads!");
 
 def library(request, library_id):
-    try:
-        cur_library = LibrarySpace.objects.get(pk=library_id)
-    except LibrarySpace.DoesNotExist:
-        raise Http404("Library does not exist")
+    
+    # SHORTCUT for try & except 404 ERROR
+    cur_library = get_object_or_404(LibrarySpace, pk=library_id)
+    
+    # LONG WAY OF DOING 404 ERROR THROW
+    # try:
+    #     cur_library = LibrarySpace.objects.get(pk=library_id)
+    # except LibrarySpace.DoesNotExist:
+    #     raise Http404("Library does not exist")
     
     latest_book_list = Book.objects.filter(libdeck_id=library_id)
     context = {"latest_book_list": latest_book_list, "cur_library": cur_library}
@@ -28,6 +33,5 @@ def books(request, library_id, book_id):
     cur_library = LibrarySpace.objects.get(pk=library_id)
     context = {"book": cur_book, "library": cur_library}
     return render(request, "libdeck/book.html", context)
-    return HttpResponse("Here is the book %s" % cur_book.book_title)
 
  
