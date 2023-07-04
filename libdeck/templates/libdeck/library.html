@@ -1,0 +1,17 @@
+<h1>Welcome to the {{cur_library.lib_name}}</h1>
+{% if latest_book_list %}
+<ul>
+    {% for book in latest_book_list %}
+        <li>
+            <a href="/{{cur_library.id}}/{{book.id}}/">{{book.book_title}}</a>
+        </li>
+    {%endfor%}
+</ul>
+{%else%}
+<p>No books available at this library!</p>
+{%endif%}
+
+<footer>
+    <hr style="margin-top: 4em"></hr>
+    <a href="/">Go back to the main page</a>
+</footer>
