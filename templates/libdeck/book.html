@@ -3,4 +3,4 @@
 <p>Author: {{ book.book_author }}</p>
 <p>Pages: {{ book.book_pages }}</p>
 
-<p>Can be found in <a href="/{{library.id}}/">{{ library.lib_name }}</a></p>
+<p>Can be found in <a href="{% url 'libdeck:library_page' library.id  %}">{{ library.lib_name }}</a></p>

@@ -3,7 +3,7 @@
 {% if latest_library_list %}
     <ul>
         {%for library in latest_library_list %}
-            <li><a href="/{{library.id}}/">{{library.lib_name}}</a>
+            <li><a href="{% url 'libdeck:library_page' library.id  %}">{{ library.lib_name }}</a>
         </li>
         {%endfor%}
     </ul>

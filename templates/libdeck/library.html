@@ -3,7 +3,7 @@
 <ul>
     {% for book in latest_book_list %}
         <li>
-            <a href="/{{cur_library.id}}/{{book.id}}/">{{book.book_title}}</a>
+            <a href="{%  url 'libdeck:book_page' cur_library.id book.id%}">{{book.book_title}}</a>
         </li>
     {%endfor%}
 </ul>
