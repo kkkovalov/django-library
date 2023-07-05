@@ -1,4 +1,4 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpRequest
 from django.shortcuts import render, get_object_or_404
 
 from .models import LibrarySpace, Book
@@ -34,4 +34,12 @@ def books(request, library_id, book_id):
     context = {"book": cur_book, "library": cur_library}
     return render(request, "libdeck/book.html", context)
 
- 
+def newbook(request, library_id):
+    if request.method == "GET":
+        cur_library = get_object_or_404(LibrarySpace, pk=library_id)
+        context = {"library": cur_library}
+        return render(request, "libdeck/newbook.html", context)
+    else:
+        return HttpResponse("Thank you for adding %s" % request.POST.get("book_name"))
+        
+    
