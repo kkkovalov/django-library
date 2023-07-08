@@ -39,7 +39,11 @@ def newbook(request, library_id):
         cur_library = get_object_or_404(LibrarySpace, pk=library_id)
         context = {"library": cur_library}
         return render(request, "libdeck/newbook.html", context)
+    elif request.method == "POST":
+        new_book = Book.objects.
+        return HttpResponse("Thank you for adding %s" % request.POST["book_name"])
+    
     else:
-        return HttpResponse("Thank you for adding %s" % request.POST.get("book_name"))
+        raise Http404("The page you are trying to access does not exist.")
         
     
