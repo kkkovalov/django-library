@@ -2,5 +2,12 @@
 
 <p>Author: {{ book.book_author }}</p>
 <p>Pages: {{ book.book_pages }}</p>
+<p>Date published: {{ book.book_pub_date}}</p>
 
 <p>Can be found in <a href="{% url 'libdeck:library_page' library.id  %}">{{ library.lib_name }}</a></p>
+{% comment %} <a style="display: block; margin-top: 1em;" href="{% url 'libdeck:delete_confirmation' library.id book.id %}">Delete {{ book.book_title }}</a> {% endcomment %}
+<form action="{% url 'libdeck:book_page' library.id book.id %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Delete" name="delete">
+    <input type="submit" value="Update" name="update">
+</form>

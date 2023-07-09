@@ -1,0 +1,18 @@
+<form action="{% url 'libdeck:book_update' library.id book.id %}" method="POST">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>Updating {{ book.book_title }}</h1></legend>
+        <p>Edit the title</p>
+        <input type="text" value="{{ book.book_title }}" name="book_title">
+        <p>Edit author</p>
+        <input type="text" value="{{ book.book_author }}" name="book_author">
+        <p>Edit published date:</p>
+        <input type="date" value="{{ book.book_pub_date|date:"Y-m-d" }}" name="book_pub_date">
+        <p>Edit pages count:</p>
+        <input type="number" value="{{ book.book_pages }}" name="book_pages">
+    </fieldset>
+
+    <input type="submit" name="save_update" value="Save updates">
+
+</form>
+<p><a href="{% url 'libdeck:book_page' library.id book.id %}">Back to book page</a></p>

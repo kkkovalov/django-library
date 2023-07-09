@@ -1,0 +1,6 @@
+<forms action="{% url 'libdeck:delete_confirmation' library.id book.id %}" method="POST">
+    {% csrf_token %}
+    <h3>Are you sure you want to delete  </h3>
+    <input type="submit" value="Delete">
+    <p><a href='{% url 'libdeck:library_page' library.id %}'>Cancel</a></p>
+</forms>
